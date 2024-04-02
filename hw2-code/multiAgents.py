@@ -80,7 +80,7 @@ class ReflexAgent(Agent):
         food_num = len(food_list)
         min_dis = 1000000
         for i in food_list:
-            dis = manhattanDistance(i,newPos) + food_num * 100
+            dis = manhattanDistance(i,newPos) + food_num * 200
             if dis < min_dis:
                 min_dis = dis
         if food_num == 0:
@@ -300,7 +300,7 @@ def betterEvaluationFunction(currentGameState: GameState):
         capsules_list = state.getCapsules()
         score = 0
         for capsule in capsules_list:
-            tmp = 50 / manhattanDistance(capsule, state.getPacmanPosition())
+            tmp = 100 / manhattanDistance(capsule, state.getPacmanPosition())
             if tmp > score:
                 score = tmp
         return score
@@ -311,7 +311,7 @@ def betterEvaluationFunction(currentGameState: GameState):
         for ghost in ghost_list:
             dis = manhattanDistance(ghost.getPosition(), state.getPacmanPosition())
             if ghost.scaredTimer > 0:
-                score += pow(max(7 - dis, 0), 2)
+                score += pow(max(8 - dis, 0), 2)
             else:
                 score -= pow(max(8 - dis, 0), 2)
         return score
